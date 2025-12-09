@@ -1,7 +1,7 @@
 import 'package:htmltopdfwidgets/htmltopdfwidgets.dart';
 
 Widget buildBulletwidget(Widget childValue,
-    {required HtmlTagStyle customStyles}) {
+    {required HtmlTagStyle customStyles, required bool isArabic}) {
   // Create a container to hold the child elements.
   Widget child = Container(
     child: Row(
@@ -9,8 +9,11 @@ Widget buildBulletwidget(Widget childValue,
       mainAxisAlignment: MainAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
+        if(!isArabic)
         BulletedListIcon(style: customStyles), // Include the bullet icon.
         Flexible(child: childValue), // Include the main content child widget.
+        if(isArabic)
+          BulletedListIcon(style: customStyles)
       ],
     ),
   );

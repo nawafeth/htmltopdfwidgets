@@ -671,6 +671,12 @@ class WidgetsHTMLDecoder {
     return result;
   }
 
+   bool _isArabic(String text) {
+    final arabicRegex = RegExp(
+      r'[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]',
+    );
+    return arabicRegex.hasMatch(text);
+  }
   /// Function to parse an unordered list element and return a list of widgets
   Future<Iterable<Widget>> _parseUnOrderListElement(
       dom.Element element, TextStyle baseTextStyle,
@@ -687,7 +693,7 @@ class WidgetsHTMLDecoder {
       }
     } else {
       result.add(
-          buildBulletwidget(Text(element.text), customStyles: customStyles));
+          buildBulletwidget(Text(element.text), customStyles: customStyles,isArabic:_isArabic(element.text)));
     }
 
     // Apply spacing if specified
@@ -781,7 +787,12 @@ class WidgetsHTMLDecoder {
 
     /// Build a bullet list widget
     if (type == BuiltInAttributeKey.bulletedList) {
-      listItem = buildBulletwidget(delta, customStyles: customStyles);
+      final children = element.nodes.toList();
+       String text = '';
+      for (final child in children) {
+        text += child.text??'';
+      }
+      listItem = buildBulletwidget(delta, customStyles: customStyles, isArabic: _isArabic(text));
 
       /// Build a numbered list widget
     } else if (type == BuiltInAttributeKey.numberList) {
