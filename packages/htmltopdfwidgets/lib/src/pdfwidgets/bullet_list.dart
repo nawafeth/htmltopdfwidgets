@@ -12,7 +12,7 @@ Widget buildBulletwidget(Widget childValue,
       mainAxisAlignment: MainAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        _BulletedListIcon(style: customStyles), // Include the bullet icon.
+        BulletedListIcon(style: customStyles), // Include the bullet icon.
         Flexible(child: childValue), // Include the main content child widget.
       ],
     ),
@@ -21,11 +21,11 @@ Widget buildBulletwidget(Widget childValue,
 }
 
 // This private class represents the bullet list icon.
-class _BulletedListIcon extends StatelessWidget {
+class BulletedListIcon extends StatelessWidget {
   final HtmlTagStyle style;
 
   // Constructor to initialize the 'style' property.
-  _BulletedListIcon({required this.style});
+  BulletedListIcon({required this.style});
 
   @override
   Widget build(Context context) {
