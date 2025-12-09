@@ -1,8 +1,5 @@
-// Import the necessary dependencies from the 'htmltopdfwidgets.dart' file.
-import '../../htmltopdfwidgets.dart';
+import 'package:htmltopdfwidgets/htmltopdfwidgets.dart';
 
-// This function creates a bullet list child widget with a bullet icon and content.
-// It takes a 'childValue' widget and 'customStyles' for styling.
 Widget buildBulletwidget(Widget childValue,
     {required HtmlTagStyle customStyles}) {
   // Create a container to hold the child elements.
@@ -20,7 +17,6 @@ Widget buildBulletwidget(Widget childValue,
   return child; // Return the resulting child widget.
 }
 
-// This private class represents the bullet list icon.
 class BulletedListIcon extends StatelessWidget {
   final HtmlTagStyle style;
 
